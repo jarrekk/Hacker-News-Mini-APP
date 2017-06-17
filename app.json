@@ -1,9 +1,41 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/ask/ask",
+    "pages/job/job",
+    "pages/show/show"
   ],
-  "window":{
+  "tabBar": {
+    "color": "#bbb",
+    "selectedColor": "#FF6600",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "Story",
+        "iconPath": "assets/icon/story.png",
+        "selectedIconPath": "assets/icon/story-filled.png"
+      },
+      {
+        "pagePath": "pages/ask/ask",
+        "text": "Ask",
+        "iconPath": "assets/icon/ask.png",
+        "selectedIconPath": "assets/icon/ask-filled.png"
+      },
+      {
+        "pagePath": "pages/show/show",
+        "text": "Show",
+        "iconPath": "assets/icon/show.png",
+        "selectedIconPath": "assets/icon/show-filled.png"
+      },
+      {
+        "pagePath": "pages/job/job",
+        "text": "Job",
+        "iconPath": "assets/icon/job.png",
+        "selectedIconPath": "assets/icon/job-filled.png"
+      }
+    ]
+  },
+    "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",

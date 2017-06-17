@@ -25,6 +25,7 @@ App({
     }
   },
   globalData:{
-    userInfo:null
+    userInfo:null,
+    hacker_color: '#FF6600'
   }
 })
