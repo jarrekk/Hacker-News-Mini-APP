@@ -3,8 +3,8 @@
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {}
+    stories: "",
+    result: false
   },
   //事件处理函数
   bindViewTap: function() {
@@ -15,12 +15,39 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      that.setData({
-        userInfo:userInfo
-      })
+    wx.request({
+      url: app.globalData.APIServer + '/v0.topstories',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        // console.log(res.data)
+        // console.log(res.data.data.slice(0, 10))
+        that.setData({
+          story_list: res.data.data,
+          // result: true
+        })
+        var first_page = res.data.data.slice(0, 10);
+        var stories = []
+        wx.request({
+          url: app.globalData.APIServer + '/list/[' + first_page + ']',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            // console.log(res.data.data)
+            stories = stories.concat(res.data.data)
+            // console.log(stories)
+            that.setData({
+              stories: stories,
+              result: true
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        console.log('error')
+      }
     })
   }
 })

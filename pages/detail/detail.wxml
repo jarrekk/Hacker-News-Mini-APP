@@ -1,0 +1,42 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="container">
+
+  <block wx:if="{{result}}"></block>
+  <block wx:else>
+    <view class="zan-loadmore">
+      <view class="zan-loading"></view>
+      <view class="zan-loadmore__tips">Loading...</view>
+    </view>
+  </block>
+
+  <view class="zan-panel" wx:if="{{result}}">
+
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <view>
+          <view class="detail-title">{{detail.title}}</view>
+          <view class="detail-content" wx:if="{{detail.text}}">
+            <text selectable="true">{{detail.text}}</text>
+          </view>
+          <view class="detail-content" wx:if="{{detail.url}}">
+            <text selectable="true">{{detail.url}}</text>
+          </view>
+          <view class="detail-info">Posted by {{detail.by}} | {{detail.score}} Points | {{detail.kids.length}} Commits</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="zan-cell" wx:for="{{commentArray}}" wx:key="id">
+      <view class="zan-cell__bd">
+        <view>
+          <view class="comment-author">{{comments[index].by}}:</view>
+          <view class="comment-content">
+            <template is="wxParse" data="{{wxParseData:item}}"/>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

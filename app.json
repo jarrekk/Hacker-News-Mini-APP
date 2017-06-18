@@ -3,10 +3,12 @@
     "pages/index/index",
     "pages/ask/ask",
     "pages/job/job",
-    "pages/show/show"
+    "pages/show/show",
+    "pages/info/info",
+    "pages/detail/detail"
   ],
   "tabBar": {
-    "color": "#bbb",
+    "color": "#666",
     "selectedColor": "#FF6600",
     "list": [
       {
@@ -32,6 +34,12 @@
         "text": "Job",
         "iconPath": "assets/icon/job.png",
         "selectedIconPath": "assets/icon/job-filled.png"
+      },
+      {
+        "pagePath": "pages/info/info",
+        "text": "Info",
+        "iconPath": "assets/icon/info.png",
+        "selectedIconPath": "assets/icon/info-filled.png"
       }
     ]
   },

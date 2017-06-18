@@ -26,6 +26,7 @@ App({
   },
   globalData:{
     userInfo:null,
-    hacker_color: '#FF6600'
+    hacker_color: "#FF6600",
+    APIServer: "https://vps.jack003.com/api/v1.0/hn"
   }
 })

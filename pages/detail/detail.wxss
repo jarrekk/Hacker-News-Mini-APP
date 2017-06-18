@@ -1,0 +1,34 @@
+.detail-title {
+  color: #FF6600 !important;
+  /*float: right; */
+  /*width: 93%;*/
+  font-size: 14px;
+}
+
+.detail-content {
+  color: #000 !important;
+  /*float: right; */
+  /*width: 93%;*/
+  font-size: 14px;
+}
+
+.detail-info {
+  color: #888 !important;
+  /*float: right; */
+  /*width: 93%;*/
+  font-size: 12px;
+}
+
+.comment-author {
+  color: #FF6600 !important;
+  /*float: right; */
+  /*width: 93%;*/
+  font-size: 12px;
+}
+
+.comment-content {
+  color: #888 !important;
+  /*float: right; */
+  /*width: 93%;*/
+  font-size: 12px;
+}

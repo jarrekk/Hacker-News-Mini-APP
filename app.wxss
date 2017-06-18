@@ -1,4 +1,4 @@
-/**app.wxss**/
+/**app.wxss
 .container {
   height: 100%;
   display: flex;
@@ -7,4 +7,55 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+**/
+@import "dist/index.wxss";
+@import "/wxParse/wxParse.wxss";
+
+.container {
+  background: #F9F9F9;
+  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.container::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  content: ' ';
+  width: 100%;
+  height: 1rpx;
+  background-color: #e2e2e2;
+  z-index: 5;
+}
+.doc-title {
+  font-size: 25px;
+  line-height: 25px;
+  color: #666;
+  padding: 15px 0;
+  margin: 20px 15px;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.story-number {
+  color: #000 !important;
+  float: left; 
+  width: 7%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.story-title {
+  color: #FF6600 !important;
+  float: right; 
+  width: 93%;
+  font-size: 14px;
+}
+
+.story-info {
+  color: #888 !important;
+  float: right; 
+  width: 93%;
+  font-size: 12px;
+}

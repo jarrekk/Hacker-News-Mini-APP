@@ -1,0 +1,22 @@
+<view class="container">
+  <!--<view class="doc-title">About Hacker News</view>-->
+  <view class="item-title">作者</view>
+  <view class="zan-panel">
+    <view class="item-detail">Kun Jia</view>
+  </view>
+
+  <view class="item-title">GitHub</view>
+  <view class="zan-panel">
+    <view class="item-detail">https://github.com/jarrekk</view>
+  </view>
+
+  <view class="item-title">个人主页</view>
+  <view class="zan-panel">
+    <view class="item-detail">http://www.jarrekk.com</view>
+  </view>
+  <view class="zan-panel">
+    <view class="item-detail">感谢使用Hacker News微信小程序，在这里你可以查看最新的国际IT资讯、技术讨论及求职信息。
+    </view>
+    <view class="item-detail" style="padding-top: 0;">如有任何疑问和建议，请联系开发者微信：jiakun0614。</view>
+  </view>
+</view>

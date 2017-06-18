@@ -1,10 +1,27 @@
-<!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+
+  <block wx:if="{{result}}"></block>
+  <block wx:else>
+    <view class="zan-loadmore">
+      <view class="zan-loading"></view>
+      <view class="zan-loadmore__tips">Loading...</view>
+    </view>
+  </block>
+
+  <view class="zan-panel" wx:if="{{result}}">
+
+    <view class="zan-cell" wx:for="{{stories}}" wx:key="id">
+    <navigator url="../detail/detail?id={{item.id}}" hover-class="navigator-hover">
+      <view class="zan-cell__bd">
+        <view>
+          <view class="story-number">{{index + 1}}</view>
+          <view class="story-title">{{item.title}}</view>
+          <view class="story-info">Posted by {{item.by}} | {{item.score}} Points | {{item.kids.length}} Commits</view>
+        </view>
+      </view>
+      </navigator>
+    </view>
+
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
 </view>
