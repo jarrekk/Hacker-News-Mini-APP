@@ -3,7 +3,4 @@
 ## Todo
 
 [ ] show comment reply.
-
-## Bug
-
-[ ] Load More not show when load to end.
+[ ] get data from cache when open this app first time.
