@@ -2,5 +2,5 @@
 
 ## Todo
 
-[ ] show comment reply.
-[ ] get data from cache when open this app first time.
+* [ ] show comment reply.
+* [ ] get data from cache when open this app first time.
