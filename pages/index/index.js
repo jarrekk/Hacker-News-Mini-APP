@@ -1,14 +1,63 @@
 var UTIL = require('../../utils/util.js')
+var Zan = require('../../dist/index');
 //获取应用实例
 var app = getApp()
-Page({
+Page(Object.assign({}, Zan.Tab, {
   data: {
+    tab1: {
+      list: [{
+        id: 'top',
+        title: 'Top'
+      }, {
+        id: 'new',
+        title: 'New'
+      }, {
+        id: 'best',
+        title: 'Best'
+      }],
+      selectedId: 'top',
+      scroll: false
+    },
+    stype: 'top',
     story_list: [],
     stories: [],
     result: false,
     loadMore: true,
     loadMoreLoading: false,
     page: 0
+  },
+  handleZanTabChange(e) {
+    var that = this;
+    var componentId = e.componentId;
+    var selectedId = e.selectedId;
+
+    that.setData({
+      [`${componentId}.selectedId`]: selectedId,
+      stype: selectedId
+    });
+    that.setData({
+      page: 0,
+      story_list: [],
+      stories: [],
+      result: false
+    })
+    var stories = that.data.stories;
+    UTIL.loadDataList(
+      '/v0.' + that.data.stype + 'stories',
+      that.data.story_list,
+      that.data.stories,
+      that.data.page
+    ).then(function (rtn) {
+      stories = stories.concat(rtn[1]);
+      // console.log(stories)
+      that.setData({
+        stories: stories,
+        result: true,
+        page: that.data.page + 1,
+        story_list: rtn[0]
+      })
+      UTIL.setListLoad(that.data.page, that.data.story_list, that)
+    })
   },
   loadmore: function() {
     var that = this;
@@ -18,7 +67,7 @@ Page({
     })
     var stories = that.data.stories;
     UTIL.loadDataList(
-      '/v0.topstories',
+      '/v0.' + that.data.stype + 'stories',
       that.data.story_list,
       that.data.stories,
       that.data.page
@@ -44,7 +93,7 @@ Page({
     })
     var stories = that.data.stories;
     UTIL.loadDataList(
-      '/v0.topstories',
+      '/v0.' + that.data.stype + 'stories',
       that.data.story_list,
       that.data.stories,
       that.data.page
@@ -65,7 +114,7 @@ Page({
     var that = this;
     var stories = that.data.stories;
     UTIL.loadDataList(
-      '/v0.topstories',
+      '/v0.' + that.data.stype + 'stories',
       that.data.story_list,
       that.data.stories,
       that.data.page
@@ -81,4 +130,4 @@ Page({
       UTIL.setListLoad(that.data.page, that.data.story_list, that)
     })
   }
-})
+}))
