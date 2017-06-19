@@ -1,4 +1,4 @@
-//index.js
+var UTIL = require('../../utils/util.js')
 //获取应用实例
 var app = getApp()
 Page({
@@ -10,48 +10,31 @@ Page({
     loadMoreLoading: false,
     page: 0
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   loadmore: function() {
     var that = this;
     that.setData({
       loadMoreLoading: true,
       loadMore: false
     })
-    var pageRange =that.data.story_list.slice(that.data.page * 10, (that.data.page + 1) * 10);
     var stories = that.data.stories;
-    wx.request({
-      url: app.globalData.APIServer + '/list/[' + pageRange + ']',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // console.log(res.data.data)
-        stories = stories.concat(res.data.data)
-        // console.log(stories)
-        that.setData({
-          stories: stories,
-          result: true,
-          page: that.data.page + 1,
-          loadMoreLoading: false,
-          loadMore: true
-        })
-      }
-    })
-    if (that.data.page * 10 > that.data.story_list.length) {
+    UTIL.loadDataList(
+      '/v0.topstories',
+      that.data.story_list,
+      that.data.stories,
+      that.data.page
+    ).then(function (rtn) {
+      stories = stories.concat(rtn[1]);
+      // console.log(stories)
       that.setData({
-        loadMoreLoading: false,
-        loadMore: false
+        stories: stories,
+        result: true,
+        page: that.data.page + 1,
+        story_list: rtn[0]
       })
-    }
-    console.log(that.data.result)
+      UTIL.setListLoad(that.data.page, that.data.story_list, that)
+    })
   },
   onPullDownRefresh: function () {
-    console.log('onLoad')
     var that = this;
     that.setData({
       page: 0,
@@ -59,90 +42,43 @@ Page({
       stories: [],
       result: false
     })
-    wx.request({
-      url: app.globalData.APIServer + '/v0.topstories',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          story_list: res.data.data,
-        })
-        var pageRange = that.data.story_list.slice(that.data.page * 10, (that.data.page + 1) * 10);
-        var stories = that.data.stories;
-        wx.request({
-          url: app.globalData.APIServer + '/list/[' + pageRange + ']',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            // console.log(res.data.data)
-            stories = stories.concat(res.data.data)
-            // console.log(stories)
-            that.setData({
-              stories: stories,
-              result: true,
-              page: that.data.page + 1
-            })
-          }
-        })
-        if (that.data.page * 10 >= that.data.story_list.length) {
-          that.setData({
-            loadMoreLoading: false,
-            loadMore: false
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('error')
-      }
+    var stories = that.data.stories;
+    UTIL.loadDataList(
+      '/v0.topstories',
+      that.data.story_list,
+      that.data.stories,
+      that.data.page
+    ).then(function (rtn) {
+      stories = stories.concat(rtn[1]);
+      // console.log(stories)
+      that.setData({
+        stories: stories,
+        result: true,
+        page: that.data.page + 1,
+        story_list: rtn[0]
+      })
+      UTIL.setListLoad(that.data.page, that.data.story_list, that)
     })
     wx.stopPullDownRefresh()
   },
-  onLoad: function () {
-    console.log('onLoad')
-    var that = this
-    wx.request({
-      url: app.globalData.APIServer + '/v0.topstories',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // console.log(res.data)
-        // console.log(res.data.data.slice(0, 10))
-        that.setData({
-          story_list: res.data.data,
-          // story_list: res.data.data.slice(0, 8),
-          // result: true
-        })
-        var pageRange = that.data.story_list.slice(that.data.page * 10, (that.data.page + 1) * 10) ;
-        var stories = that.data.stories;
-        wx.request({
-          url: app.globalData.APIServer + '/list/[' + pageRange + ']',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            // console.log(res.data.data)
-            stories = stories.concat(res.data.data)
-            // console.log(stories)
-            that.setData({
-              stories: stories,
-              result: true,
-              page: that.data.page + 1
-            })
-          }
-        })
-        if (that.data.page * 10 >= that.data.story_list.length) {
-          that.setData({
-            loadMoreLoading: false,
-            loadMore: false
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('error')
-      }
+  onLoad: function() {
+    var that = this;
+    var stories = that.data.stories;
+    UTIL.loadDataList(
+      '/v0.topstories',
+      that.data.story_list,
+      that.data.stories,
+      that.data.page
+    ).then(function(rtn) {
+      stories = stories.concat(rtn[1]);
+      // console.log(stories)
+      that.setData({
+        stories: stories,
+        result: true,
+        page: that.data.page + 1,
+        story_list: rtn[0]
+      })
+      UTIL.setListLoad(that.data.page, that.data.story_list, that)
     })
   }
 })

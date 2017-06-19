@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "Hacker News"
+  "navigationBarTitleText": "Hacker News",
+  "enablePullDownRefresh": true
 }
