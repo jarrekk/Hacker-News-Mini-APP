@@ -16,12 +16,21 @@
         <view>
           <view class="story-number">{{index + 1}}</view>
           <view class="story-title">{{item.title}}</view>
-          <view class="story-info">Posted by {{item.by}} | {{item.score}} Points | {{item.kids.length}} Commits</view>
+          <view class="story-info">Posted by {{item.by}} | {{item.score}} Points | {{item.kids.length ? item.kids.length : 0}} Commits</view>
         </view>
       </view>
       </navigator>
     </view>
 
+    <view class="zan-cell" wx:if="{{loadMore}}" bindtap="loadmore">
+      <view class="zan-loadmore">
+        <view class="zan-loadmore__tips">Load More</view>
+      </view>
+    </view>
+    <view class="zan-loadmore" wx:if="{{loadMoreLoading}}">
+      <view class="zan-loading"></view>
+      <view class="zan-loadmore__tips">Loading...</view>
+    </view>
   </view>
 
 </view>

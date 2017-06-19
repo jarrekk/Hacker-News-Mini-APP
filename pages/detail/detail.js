@@ -4,7 +4,8 @@ var WxParse = require('../../wxParse/wxParse.js');
 var app = getApp()
 Page({
   data: {
-    result: false,
+    contentShow: false,
+    commentShow: false,
     detail: null,
     comments: null
   },
@@ -28,9 +29,12 @@ Page({
         console.log(res.data.data)
         // console.log(stories)
         that.setData({
-          detail: res.data.data
+          detail: res.data.data,
+          contentShow: true
         })
-        var first_page = res.data.data.kids.slice(0, 10);
+        var first_page = [];
+        if (res.data.data.kids) {
+        first_page = res.data.data.kids.slice(0, 5);
         var comments = []
         wx.request({
           url: app.globalData.APIServer + '/list/[' + first_page + ']',
@@ -48,11 +52,16 @@ Page({
             }
             that.setData({
               comments: comments,
-              result: true
+              commentShow: true
             })
 
           }
         })
+        } else {
+          that.setData({
+            commentShow: true
+          })
+        }
       }
     })
   }
