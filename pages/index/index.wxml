@@ -1,11 +1,11 @@
 <import src="/dist/tab/index.wxml" />
-<view style="height: 50px;"></view>
 <view class="container">
   <view class="tab-class">
     <template is="zan-tab" data="{{tab: tab1, componentId: 'tab1'}}"></template>
   </view>
   <block wx:if="{{result}}"></block>
   <block wx:else>
+    <view style="height: 50px;"></view>
     <view class="zan-loadmore">
       <view class="zan-loading"></view>
       <view class="zan-loadmore__tips">Loading...</view>
@@ -13,9 +13,9 @@
   </block>
 
   <view class="zan-panel" wx:if="{{result}}">
+    <view style="height: 50px;"></view>
 
-    <view class="zan-cell" wx:for="{{stories}}" wx:key="id">
-    <navigator url="../detail/detail?id={{item.id}}" hover-class="navigator-hover">
+    <navigator url="../detail/detail?id={{item.id}}" hover-class="navigator-hover" class="zan-cell" wx:for="{{stories}}" wx:key="id">
       <view class="zan-cell__bd">
         <view>
           <view class="story-number">{{index + 1}}</view>
@@ -24,17 +24,15 @@
         </view>
       </view>
       </navigator>
-    </view>
 
-    <view class="zan-cell" wx:if="{{loadMore}}" bindtap="loadmore">
-      <view class="zan-loadmore">
-        <view class="zan-loadmore__tips">Load More</view>
-      </view>
+    <view class="zan-loadmore" wx:if="{{loadMore}}" bindtap="loadmore">
+      <view class="zan-loadmore__tips">Load More</view>
     </view>
     <view class="zan-loadmore" wx:if="{{loadMoreLoading}}">
       <view class="zan-loading"></view>
       <view class="zan-loadmore__tips">Loading...</view>
     </view>
+    
   </view>
 
 </view>
