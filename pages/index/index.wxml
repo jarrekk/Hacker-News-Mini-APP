@@ -1,6 +1,7 @@
 <import src="/dist/tab/index.wxml" />
+<view style="height: 50px;"></view>
 <view class="container">
-  <view style="margin: 20px 0">
+  <view class="tab-class">
     <template is="zan-tab" data="{{tab: tab1, componentId: 'tab1'}}"></template>
   </view>
   <block wx:if="{{result}}"></block>

@@ -38,12 +38,22 @@
     <view class="zan-cell" wx:for="{{commentArray}}" wx:key="id" wx:if="{{commentShow}}">
       <view class="zan-cell__bd">
         <view>
-          <view class="comment-author">{{comments[index].by}}:</view>
+          <view class="comment-author" wx:if="{{comments[index].by}}">{{comments[index].by}}:</view>
           <view class="comment-content">
             <template is="wxParse" data="{{wxParseData:item}}"/>
           </view>
         </view>
       </view>
+    </view>
+
+    <view class="zan-cell" wx:if="{{loadMore}}" bindtap="loadmore">
+      <view class="zan-loadmore">
+        <view class="zan-loadmore__tips">Load More</view>
+      </view>
+    </view>
+    <view class="zan-loadmore" wx:if="{{loadMoreLoading}}">
+      <view class="zan-loading"></view>
+      <view class="zan-loadmore__tips">Loading...</view>
     </view>
 
   </view>

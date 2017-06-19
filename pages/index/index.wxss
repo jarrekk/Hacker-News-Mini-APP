@@ -1,1 +1,8 @@
 /**index.wxss**/
+.tab-class {
+  position: fixed; 
+  top: 0;
+  color: #000;
+  background-color: #000;
+  z-index: 999;
+}
