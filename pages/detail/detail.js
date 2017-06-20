@@ -13,11 +13,29 @@ Page({
     page: 0,
     comment_list: []
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  copyurl: function() {
+    wx.setClipboardData({
+      data: this.data.detail.url,
+      success: function (res) {
+        wx.showToast({
+          title: 'Copy Success',
+          icon: 'success',
+          duration: 1000
+        })
+      }
     })
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: 'A news that may interest you :)',
+      path: '/pages/detail/detail?id=' + this.data.itemId,
+      success: function (res) {
+        console.log('success')
+      },
+      fail: function (res) {
+        console.log('fail')
+      }
+    }
   },
   loadmore: function () {
     var that = this;
@@ -71,6 +89,9 @@ Page({
     console.log('onLoad')
     var that = this
     var id = options.id;
+    that.setData({
+      itemId: id
+    })
 
     wx.request({
       url: app.globalData.APIServer + '/v0.item.' + id,

@@ -20,6 +20,7 @@
           </view>
           <view class="detail-content" wx:if="{{detail.url}}">
             <text selectable="true">{{detail.url}}</text>
+            <button class="zan-btn zan-btn--mini zan-btn--warn zan-btn--plain" style="float: right;" bindtap="copyurl">Copy</button>
           </view>
           <view class="detail-info">Posted by {{detail.by}} | {{detail.score}} Points | {{detail.kids.length ? detail.kids.length : 0}} Commits</view>
         </view>
@@ -55,5 +56,5 @@
     </view>
 
   </view>
-
+<button class="zan-btn" style="background-color: #FF6600;color: #fff;" open-type="share">Share this story</button>
 </view>
