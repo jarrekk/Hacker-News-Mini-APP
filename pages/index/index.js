@@ -41,22 +41,21 @@ Page(Object.assign({}, Zan.Tab, {
       stories: [],
       result: false
     })
-    var stories = that.data.stories;
-    UTIL.loadDataList(
-      '/v0.' + that.data.stype + 'stories',
-      that.data.story_list,
-      that.data.stories,
-      that.data.page
-    ).then(function (rtn) {
-      stories = stories.concat(rtn[1]);
-      // console.log(stories)
-      that.setData({
-        stories: stories,
-        result: true,
-        page: that.data.page + 1,
-        story_list: rtn[0]
-      })
-      UTIL.setListLoad(that.data.page, that.data.story_list, that)
+    wx.request({
+      url: app.globalData.APIServer + '/cache/' + that.data.stype,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          stories: res.data.data.scontent,
+          result: true,
+          page: that.data.page + 1,
+          story_list: res.data.data.slist
+        })
+        UTIL.setListLoad(that.data.page, that.data.story_list, that)
+      }
     })
   },
   loadmore: function() {
@@ -112,22 +111,21 @@ Page(Object.assign({}, Zan.Tab, {
   },
   onLoad: function() {
     var that = this;
-    var stories = that.data.stories;
-    UTIL.loadDataList(
-      '/v0.' + that.data.stype + 'stories',
-      that.data.story_list,
-      that.data.stories,
-      that.data.page
-    ).then(function(rtn) {
-      stories = stories.concat(rtn[1]);
-      // console.log(stories)
-      that.setData({
-        stories: stories,
-        result: true,
-        page: that.data.page + 1,
-        story_list: rtn[0]
-      })
-      UTIL.setListLoad(that.data.page, that.data.story_list, that)
+    wx.request({
+      url: app.globalData.APIServer + '/cache/' + that.data.stype,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          stories: res.data.data.scontent,
+          result: true,
+          page: that.data.page + 1,
+          story_list: res.data.data.slist
+        })
+        UTIL.setListLoad(that.data.page, that.data.story_list, that)
+      }
     })
   }
 }))
