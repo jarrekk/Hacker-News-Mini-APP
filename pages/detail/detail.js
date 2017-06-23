@@ -105,6 +105,9 @@ Page({
           detail: res.data.data,
           contentShow: true
         })
+        if (res.data.data.text) {
+          WxParse.wxParse('detailText', 'html', res.data.data.text, that, 0);
+        }
         if (res.data.data.kids) {
           var comment_list = res.data.data.kids;
           var pageRange = res.data.data.kids.slice(that.data.page * 5, (that.data.page + 1) * 5);

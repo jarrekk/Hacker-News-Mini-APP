@@ -16,7 +16,10 @@
         <view>
           <view class="detail-title">{{detail.title}}</view>
           <view class="detail-content" wx:if="{{detail.text}}">
-            <text selectable="true">{{detail.text}}</text>
+            <!--<text selectable="true">{{detail.text}}</text>-->
+            <view class="comment-content">
+              <template is="wxParse" data="{{wxParseData:detailText.nodes}}"/>
+            </view>
           </view>
           <view class="detail-content" wx:if="{{detail.url}}">
             <text selectable="true">{{detail.url}}</text>
