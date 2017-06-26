@@ -3,4 +3,4 @@
 ## Todo
 
 * [ ] show comment reply.
-* [ ] get data from cache when open this app first time.
+* [x] get data from cache when open this app first time.
